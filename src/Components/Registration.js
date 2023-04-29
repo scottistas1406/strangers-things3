@@ -1,13 +1,25 @@
 import React, {useState} from "react";
+import { registerUser } from '../ajax-requests'
 
-function Registration(){
+function Registration({setToken}){
     const [username, setUsername] = useState('');
     const [password, setPassword]= useState('');
-    console.log(username,password)
 
+async function handleSubmit(event){
+event.preventDefault();
+const user={username,password};
+
+
+
+const results = await registerUser(user);
+if (results.success){
+    setToken(results.data.token);
+}
+
+}
     
     return(
-       <form>
+       <form onSubmit={handleSubmit}>
        <input
         type='text'
         placeholder='Enter Username'

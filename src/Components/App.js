@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Registration} from './'
 
 function App(){
+    const [token, setToken]=useState('');
+
+    console.log(token)
     return (
     <div>
-       <Registration></Registration>
+       <Registration setToken={setToken}></Registration>
     </div>
     
         )
