@@ -2,6 +2,8 @@ import React, {useState, useEffect, useReducer} from 'react';
 import {Routes, Route} from 'react-router-dom';
 import {Registration,
      Posts,
+     Login,
+     CreatePost
     }
       from './'
 import {fetchPosts} from '../ajax-requests';
@@ -33,7 +35,7 @@ gatherPosts();
 },[token])
 console.log(posts)
    
-console.log('here is the token silly',token)
+//console.log('here is the token silly',token)
 
     return (
     <div>
@@ -44,11 +46,23 @@ console.log('here is the token silly',token)
         >            
         </Route>
 
+        <Route
+        path='/login'
+        element={<Login setToken={setToken}></Login>}
+        >            
+        </Route>
+
         <Route 
           path='/registration' 
           element={<Registration setToken={setToken}></Registration>} >
         </Route>
-       </Routes>
+
+        <Route
+        path='/createpost'
+        element={<CreatePost token={token} gatherPosts={gatherPosts}/>}>
+        </Route>
+       
+    </Routes>
     </div>
     
         );
