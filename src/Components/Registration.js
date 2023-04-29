@@ -14,6 +14,7 @@ const user={username,password};
 const results = await registerUser(user);
 if (results.success){
     setToken(results.data.token);
+    window.localStorage.setItem("token",results.data.token)
 }
 
 }
