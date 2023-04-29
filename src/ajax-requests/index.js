@@ -14,11 +14,21 @@ const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
             })
           });
           const result = await response.json();
-    // You can log ▲▲▲ the result
-    // here ▼▼▼ to view the json object before returning it
-          console.log(result)
+   
           return result
         } catch (err) {
           console.error(err);
         }
-      } 
+      } ;
+
+    export  const fetchPosts = async () => {
+        try {
+          const response = await fetch(`${BASE_URL}/posts`)
+      
+          const result = await response.json();
+          console.log(result);
+          return result
+        } catch (err) {
+          console.error(err);
+        }
+      };

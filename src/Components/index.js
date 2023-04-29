@@ -2,4 +2,6 @@
 
 export {default as App} from './App';
 export {default as Registration} from './Registration';
+export {default as Posts} from './Posts'
+ 
 
