@@ -63,7 +63,7 @@ const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
 //Posts **************
     export  const fetchPosts = async (token) => {
         try {
-          const response = await fetch(`${BASE_URL}/me`,{
+          const response = await fetch(`${BASE_URL}/posts`,{
             headers:{
                 'Content-type':'application/json',                
                 Authorization:'Bearer ${token}'
