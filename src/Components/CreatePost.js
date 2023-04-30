@@ -1,22 +1,24 @@
 import React, {useState} from 'react';
 import { makePost } from '../ajax-requests';
-
 import { useAsyncValue } from 'react-router-dom';
+import '../styles/createpost.css'; // <-- import the CSS file
 
-function CreatePost({token, gatherPosts}){
+function CreatePost({token, gatherPosts,navigate}){
     const [title, setTitle]=useState('');
     const [description, setdescrption]=useState('');
     const [price, setprice]=useState('');
+    const [location, setlocation]=useState('');
     
     
-   async function handleSubmit(evnet){
+   async function handleSubmit(event){
         event.preventDefault()
         const post={title,description,price}
         //console.log('whatcha got',title,description,price);
         const results= await makePost(post, token)
-        console.log(results)
+       // console.log('here are your results!',results)
         if (results.success){
-            gatherPosts();
+            makePost();
+            navigate('/');
         }
 
     }
@@ -41,6 +43,12 @@ function CreatePost({token, gatherPosts}){
        placeholder='Enter Things Price'
        value={price}
        onChange={()=>{setprice(event.target.value)}}
+       />
+       <input
+       type='text'
+       placeholder='Enter your location.'
+       value={location}
+       onChange={()=>{setlocation(event.target.value)}}
        />
        <button type='submit'>Register Thing</button>
 

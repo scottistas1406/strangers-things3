@@ -1,0 +1,99 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #202124;
+    color: white;
+  }
+  
+  .nav-title {
+    font-size: 1.5rem;
+  }
+  .nav-login-confirm {
+    font-size: 1.0rem;
+  }
+  
+  .nav-button {
+    background-color: gray;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .nav-button:hover {
+    background-color: black;
+    border: none;
+    color: white;
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 768px) {
+    .nav-menu {
+      position: absolute;
+      top: 4rem;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #202124;
+      z-index: 1;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+  
+    .nav-menu.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  
+    .nav-toggle-label {
+      position: relative;
+      display: inline-block;
+      height: 2.5rem;
+      width: 2.5rem;
+      cursor: pointer;
+    }
+  
+    .nav-toggle-label span {
+      display: block;
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      background-color: white;
+      border-radius: 10px;
+      transition: transform 0.3s ease-in-out;
+    }
+  
+    .nav-toggle-label span:nth-child(1) {
+      top: 0.5rem;
+    }
+  
+    .nav-toggle-label span:nth-child(2),
+    .nav-toggle-label span:nth-child(3) {
+      top: 1.1rem;
+    }
+  
+    .nav-toggle-label span:nth-child(2) {
+      transform: translateY(-5px);
+    }
+  
+    .nav-toggle-label span:nth-child(3) {
+      transform: translateY(5px);
+    }
+  
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(1) {
+      transform: rotate(45deg) translate(0.5rem, 0.5rem);
+    }
+  }
+  

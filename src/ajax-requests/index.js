@@ -16,19 +16,57 @@ const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
           const result = await response.json();
    
           return result
+          console.log('*****************index.js',result)
         } catch (err) {
           console.error(err);
         }
       } ;
-
+ //LOGIN ***************
+ export const loginUser = async (user) => {
+  
+    try {
+      const response = await fetch(`${BASE_URL}/users/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user
+        }),
+      });
+      const result = await response.json();
+      // console.log(result);
+      return result;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  
+    
+          export const myData = async (token) => {
+            try {
+              const response = await fetch(`${BASE_URL}/users/me`, {
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+              });
+              const result = await response.json();
+              // console.log(result);
+              return result;
+            } catch (err) {
+              console.error(err);
+            }
+          };
+    
 
 //Posts **************
     export  const fetchPosts = async (token) => {
         try {
-          const response = await fetch(`${BASE_URL}/posts`,{
+          const response = await fetch(`${BASE_URL}/me`,{
             headers:{
-                'Content-type':'application/json',
-                Authorization:'Bearer ${token}',
+                'Content-type':'application/json',                
+                Authorization:'Bearer ${token}'
             },
           });
       
@@ -47,6 +85,7 @@ console.log(post,token)
         try {
           const response = await fetch(`${BASE_URL}/posts`, {
             method: "POST",
+           
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}`
@@ -60,22 +99,19 @@ console.log(post,token)
          // console.log(result);
           return result
         } catch (err) {
-          console.error(err);
+          console.error('this is a problem',err);
         }
       }
      
-     //LOGIN ***************
-      export const loginUser = async (user) => {
-console.log('from login ajax',user);
+    //***************Delete * just a sample delete is not working/
+    const deletePost = async () => {
         try {
-          const response = await fetch(`${BASE_URL}/users/login`, {
-            method: "POST",
+          const response = await fetch(`${BASE_URL}/posts/5e8d1bd48829fb0017d2233b`, {
+            method: "DELETE",
             headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              user 
-            }),
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${TOKEN_STRING_HERE}`
+            }
           });
           const result = await response.json();
           console.log(result);
@@ -83,21 +119,4 @@ console.log('from login ajax',user);
         } catch (err) {
           console.error(err);
         }
-      };
-
-     export const myData = async (token) => {
-         
-         try {
-           const response = await fetch(`${BASE_URL}/users/me`, {
-             headers: {
-               'Content-Type': 'application/json',
-               'Authorization': `Bearer ${token}`
-             },
-           });
-           const result = await response.json();
-           //console.log('results are showing',result);
-           return result
-         } catch (err) {
-           console.error(err);
-         }
       }
