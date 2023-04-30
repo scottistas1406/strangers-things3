@@ -20,13 +20,20 @@ const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
           console.error(err);
         }
       } ;
+
+
 //Posts **************
-    export  const fetchPosts = async () => {
+    export  const fetchPosts = async (token) => {
         try {
-          const response = await fetch(`${BASE_URL}/posts`)
+          const response = await fetch(`${BASE_URL}/posts`,{
+            headers:{
+                'Content-type':'application/json',
+                Authorization:'Bearer ${token}',
+            },
+          });
       
           const result = await response.json();
-          console.log(result);
+        //  console.log(result);
           return result
         } catch (err) {
           console.error(err);
@@ -50,7 +57,7 @@ console.log(post,token)
             
           });
           const result = await response.json();
-          console.log(result);
+         // console.log(result);
           return result
         } catch (err) {
           console.error(err);
@@ -77,3 +84,20 @@ console.log('from login ajax',user);
           console.error(err);
         }
       };
+
+     export const myData = async (token) => {
+         
+         try {
+           const response = await fetch(`${BASE_URL}/users/me`, {
+             headers: {
+               'Content-Type': 'application/json',
+               'Authorization': `Bearer ${token}`
+             },
+           });
+           const result = await response.json();
+           //console.log('results are showing',result);
+           return result
+         } catch (err) {
+           console.error(err);
+         }
+      }
