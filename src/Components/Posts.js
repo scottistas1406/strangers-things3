@@ -25,13 +25,14 @@ function Posts({ posts }) {
           <div className="post-title">{post.title}</div>
           <div className="post-description">{post.description}</div>
           <div className="post-description-price">{post.price}</div>
+          <div className='post-description-price'>{post._id}</div>
           <div className="post-info">
 
             {post.isAuthor ? (
               <>
                 <span>Posted by: {post.author.username}</span>
                 <button>Delete</button>
-                <Link to={`/update-post/${post._id}`}><button>Edit</button></Link>
+             <Link to={`/updatepost/${post._Id}`} ><button>Edit Post</button></Link>
               </>
             ) : (
               <>

@@ -4,10 +4,11 @@ import {Registration,
      Posts,
      Login,
      CreatePost,
+     UpdatePost,
      Nav
     }
       from './'
-import {fetchPosts,myData} from '../ajax-requests';
+import {fetchPosts,myData, deletePost} from '../ajax-requests';
 //import { UserContext } from '../contexts/UserContext';
 
 function App(){
@@ -91,6 +92,11 @@ console.log(posts)
         <Route
         path='/createpost'
         element={<CreatePost token={token} getPosts={getPosts} navigate={navigate}/>}>
+        </Route>
+
+        <Route
+        path='/updatepost/:postID'
+        element={<UpdatePost token={token} posts={posts} navigate={navigate}/>}>
         </Route>
 
       
